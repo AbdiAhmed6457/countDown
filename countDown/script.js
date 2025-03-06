@@ -1,3 +1,13 @@
+const daysEl = document.getElementById('days'
+);
+const hoursEl = document.getElementById('hours'
+);
+const minsEl = document.getElementById('minutes'
+);
+const secEl = document.getElementById('seconds'
+);
+
+
 const newYears = "1 jan 2026";
 
 function countDown() {
@@ -14,7 +24,11 @@ function countDown() {
     const seconds = Math.floor((totalSeconds % 60));
 
     console.log(  days, hours, minutes, seconds);
+
+    daysEl.textContent = String(days).padStart(2,0);
+    hoursEl.textContent = String(hours).padStart(2,0);;
+    minsEl.textContent = String(minutes).padStart(2,0);;
+    secEl.textContent = String(seconds).padStart(2,0);;
 }
 
-countDown();
-// setInterval(countDown, 1000);
+setInterval(countDown, 1000);
