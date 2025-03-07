@@ -39,3 +39,51 @@ const quizData = [
     }
     
 ]
+
+const questionEl = document.getElementById('question');
+
+const a_text = document.getElementById('a_text');
+const b_text = document.getElementById('b_text');
+const c_text = document.getElementById('c_text');
+const d_text = document.getElementById('d_text');
+const submitbtn = document.getElementById('submit')
+
+// console.log(a_text)
+
+let currentQuiz = 0;
+
+
+function loadQuiz() {
+    const currentQuizData = quizData[currentQuiz]
+    questionEl.innerText = currentQuizData.question;
+    a_text.innerText = currentQuizData.a;
+    b_text.innerText = currentQuizData.b;
+    c_text.innerText = currentQuizData.c;
+    d_text.innerText = currentQuizData.d;
+    // console.log(currentQuiz);
+
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
+    
+        if (selectedOption) {
+            console.log("Selected Answer:", selectedOption.id); // Logs the chosen option (a, b, c, or d)
+        } else {
+            console.log("No option selected.");
+}
+
+}
+
+loadQuiz();
+
+submitbtn.addEventListener ('click', () => {
+    currentQuiz++;
+    if (currentQuiz < quizData.length) {  
+        loadQuiz();
+        
+    } else {
+        alert("get yourself a banana since you have already finished all the question")
+        console.error("No more questions!"); 
+
+}
+
+
+})
