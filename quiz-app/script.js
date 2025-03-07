@@ -52,6 +52,7 @@ const submitbtn = document.getElementById('submit')
 
 let currentQuiz = 0;
 let selectedAnswers = {}; 
+let score = 0;
 
 
 function loadQuiz() {
@@ -80,20 +81,20 @@ submitbtn.addEventListener ('click', () => {
     }
 
     selectedAnswers[currentQuiz] = selectedOption.id;
+
+    if (selectedOption.id === quizData[currentQuiz].correct) {
+        score++;
+        console.log(score);
+        console.log("Correct! ✅ Score:", score);
+    } else {
+        console.log("Wrong ❌ The correct answer is:", quizData[currentQuiz].correct);
+    }
+
+
     currentQuiz++;
 
     if (currentQuiz < quizData.length ) {  
-        loadQuiz();
-
-        
-    
-        if (selectedOption) {
-            console.log("Selected Answer:", selectedOption.id); 
-
-        } else {
-            console.log("No option selected.");
-}
-
+        loadQuiz();    
         
     }else {
         alert("Quiz completed! Get yourself a banana 🍌");
