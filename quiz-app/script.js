@@ -47,7 +47,7 @@ const b_text = document.getElementById('b_text');
 const c_text = document.getElementById('c_text');
 const d_text = document.getElementById('d_text');
 const submitbtn = document.getElementById('submit')
-
+const quiz = document.querySelector('.quiz-container');
 // console.log(a_text)
 
 let currentQuiz = 0;
@@ -97,9 +97,11 @@ submitbtn.addEventListener ('click', () => {
         loadQuiz();    
         
     }else {
-        alert("Quiz completed! Get yourself a banana 🍌");
-        console.error("No more questions!");
-        console.log("Final Answers:", selectedAnswers); 
+       
+        // console.error("No more questions!");
+        // console.log("Final Answers:", selectedAnswers); 
+        quiz.innerText = `you have answered ${score} questions correctly out of ${quizData.length}`;
+        quiz.classList.add("theEnd");
     }
 
 

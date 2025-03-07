@@ -52,3 +52,13 @@ button:hover {
     background-color: hsla(240, 78%, 16%, 0.63);
 
 }
+
+.theEnd {
+    font-size: 3rem;
+    color: green;
+    text-align: center;
+    padding: 20px;
+    background-color: hsla(180, 100%, 50%, 0.331);
+    border-radius: 15px;
+    box-shadow: "4px 4px 14px rgba(0, 0, 0, 0.5)";
+}
