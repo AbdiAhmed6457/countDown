@@ -98,11 +98,14 @@ submitbtn.addEventListener ('click', () => {
         
     }else {
        
-        // console.error("No more questions!");
-        // console.log("Final Answers:", selectedAnswers); 
-        quiz.innerText = `you have answered ${score} questions correctly out of ${quizData.length}`;
-        quiz.classList.add("theEnd");
-    }
+        
+        quiz.innerHTML = `
+    <p>You have answered ${score} questions correctly out of ${quizData.length}</p>
+    <button onclick="location.reload()">Reload</button>
+`;
+
+        quiz.classList.add("theEnd") 
+    
 
 
 })
