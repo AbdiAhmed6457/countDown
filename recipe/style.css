@@ -90,3 +90,22 @@ header button {
     z-index: 2;
     background-color: white;
 }
+.meal-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.meal-body h4 {
+    margin: 0;
+}
+.meal-body button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: rgba(91, 87, 87, 0.915);
+}
+.fav-btn.active {
+    color: rgba(53, 174, 32, 0.897);
+
+}
