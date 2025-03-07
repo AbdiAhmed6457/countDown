@@ -51,6 +51,7 @@ const submitbtn = document.getElementById('submit')
 // console.log(a_text)
 
 let currentQuiz = 0;
+let selectedAnswers = {}; 
 
 
 function loadQuiz() {
@@ -62,28 +63,43 @@ function loadQuiz() {
     d_text.innerText = currentQuizData.d;
     // console.log(currentQuiz);
 
-    const selectedOption = document.querySelector('input[name="answer"]:checked');
-    
-        if (selectedOption) {
-            console.log("Selected Answer:", selectedOption.id); // Logs the chosen option (a, b, c, or d)
-        } else {
-            console.log("No option selected.");
-}
+    document.querySelectorAll('input[name="answer"]').forEach((input) => input.checked = false);
+
 
 }
 
 loadQuiz();
 
 submitbtn.addEventListener ('click', () => {
-    currentQuiz++;
-    if (currentQuiz < quizData.length) {  
-        loadQuiz();
-        
-    } else {
-        alert("get yourself a banana since you have already finished all the question")
-        console.error("No more questions!"); 
+    const selectedOption = document.querySelector('input[name="answer"]:checked');
 
+
+    if (!selectedOption) {
+        alert("Please select an answer before proceeding!");
+        return; 
+    }
+
+    selectedAnswers[currentQuiz] = selectedOption.id;
+    currentQuiz++;
+
+    if (currentQuiz < quizData.length ) {  
+        loadQuiz();
+
+        
+    
+        if (selectedOption) {
+            console.log("Selected Answer:", selectedOption.id); 
+
+        } else {
+            console.log("No option selected.");
 }
+
+        
+    }else {
+        alert("Quiz completed! Get yourself a banana 🍌");
+        console.error("No more questions!");
+        console.log("Final Answers:", selectedAnswers); 
+    }
 
 
 })
