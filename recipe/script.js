@@ -37,53 +37,43 @@ function addMeal(mealData, random = false) {
     </div>
     `;
 
-     meal.querySelector('.fav-btn').addEventListener('click', (e) => {
-         e.currentTarget.classList.toggle('active');
-      
-     })
+     const btn = meal.querySelector('.fav-btn');
+
+     btn.addEventListener('click', () => {
+        if (btn.classList.contains('active')) {
+            removeMealLS(mealData.idMeal);
+            btn.classList.remove('active');
+        } else {
+            addMealLS(mealData.idMeal);  // Corrected function name
+            btn.classList.add('active');
+        }
+    });
+    
 
     mealsEl.appendChild(meal);
 
 
 }
+function addMealLS(mealId) {
+       const mealIds = getMealLS();
 
-// Save meal ID to localStorage
-function addMealToLS(mealId) {
-    const mealIds = getMealsFromLS();
-    localStorage.setItem('mealIds', JSON.stringify([...mealIds, mealId]));
+       localStorage.setItem('mealIds', JSON.stringify([...mealIds, mealId]));
 }
 
-// Get favorite meal IDs from localStorage
-function getMealsFromLS() {
-    return JSON.parse(localStorage.getItem('mealIds')) || [];
+function removeMealLS(mealId) {
+    const mealIds = getMealLS(); 
+
+    localStorage.setItem(
+        'mealIds',  
+        JSON.stringify(mealIds.filter(id => id !== mealId)) 
+    );
 }
 
-// Remove meal from localStorage
-function removeMealFromLS(mealId) {
-    const mealIds = getMealsFromLS();
-    localStorage.setItem('mealIds', JSON.stringify(mealIds.filter(id => id !== mealId)));
+function getMealLS(mealId){
+    const mealIds = JSON.parse(localStorage.getItem(mealId)) || [];
+
+    return mealIds
 }
 
-// Fetch and display favorite meals
-async function updateFavMeals() {
-    favMealsContainer.innerHTML = ''; // Clear existing content
-    const mealIds = getMealsFromLS();
 
-    for (let id of mealIds) {
-        const meal = await getMealById(id);
-        addMealToFavorites(meal);
-    }
-}
-
-// Event listener to toggle favorite
-favBtn.addEventListener('click', () => {
-    if (favBtn.classList.contains('active')) {
-        removeMealFromLS(mealData.idMeal);
-        favBtn.classList.remove('active');
-    } else {
-        addMealToLS(mealData.idMeal);
-        favBtn.classList.add('active');
-    }
-    updateFavMeals();
-});
 
